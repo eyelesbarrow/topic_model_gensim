@@ -1,14 +1,6 @@
 
-# coding: utf-8
-
-# In[3]:
-
 
 import nltk; nltk.download('stopwords')
-
-
-# In[7]:
-
 
 import re
 import numpy as np
@@ -26,23 +18,14 @@ from gensim import corpora, models
 import gensim
 
 
-# In[8]:
 
 
 stop_words = stopwords.words('english')
 stop_words.extend(["say", "official"])
 text_df = pd.read_csv('filepath', sep='delimiter', engine='python', header=None)
 
-#print(stop_words)
-
-
-# In[9]:
-
 
 text_list = text_df.values.tolist() #transform dataframe to list
-
-
-# In[10]:
 
 
 def sent_to_words(sentences):
@@ -87,9 +70,6 @@ def lemmatization(text, allowed_postags=['NOUN', 'ADJ', 'VERB', 'ADV']):
         doc = nlp(" ".join(sent)) 
         texts_out.append([token.lemma_ for token in doc if token.pos_ in allowed_postags])
     return texts_out
-
-
-# In[14]:
 
 
 data_words_nostops = delete_stopwords(data_words)
